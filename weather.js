@@ -44,7 +44,10 @@ var app= new Vue({
       
       handleClick(){
         this.cleartime= window.setInterval(()=>{
-          this.Click();                                          
+          this.Click();
+          if(is){
+            clearInterval(this.cleartime)
+          }                                          
         },1000)
                 
                 
@@ -74,8 +77,9 @@ var app= new Vue({
           
           
           alert('現在時間'+this.nowDay+this.nowTime+"快來看看今天天氣哦!");
+          return is=true; //////////////20211212
           
-        }
+        } 
         else
         return vm.data;
        
@@ -118,13 +122,35 @@ var app= new Vue({
             let hh    = newdate.getHours() < 10? "0" + newdate.getHours(): newdate.getHours();
             let mm    = newdate.getMinutes() < 10? "0" + newdate.getMinutes(): newdate.getMinutes();
             let ss    = newdate.getSeconds() < 10? "0" + newdate.getSeconds(): newdate.getSeconds();
-            let weeks = newdate.getDay(); //2
-            let weeks1 = newdate.getDay()+1 < 7? "0"+newdate.getDay()+1+(-7):newdate.getDay()+1+(-7); //明天  3
-            let weeks2 = newdate.getDay()+2 < 7? "0"+newdate.getDay()+2+(-7):newdate.getDay()+2+(-7); //後天  4
-            let weeks3 = newdate.getDay()+3 < 7? "0"+newdate.getDay()+3+(-7):newdate.getDay()+3+(-7); //大厚天  5
-            let weeks4 = newdate.getDay()+4 < 7? "0"+newdate.getDay()+4+(-7):newdate.getDay()+4+(-7);  //大大厚天  6
-            let weeks5 = newdate.getDay()+5 < 7? "0"+newdate.getDay()+5+(-7):newdate.getDay()+5+(-7); //大大大厚天  7
-            let weeks6 = newdate.getDay()+6 < 7? "0"+newdate.getDay()+6+(-7):newdate.getDay()+6+(-7); //大大大大厚天  1
+            let weeks = newdate.getDay();
+
+
+            // let weeks1 = newdate.getDay()+1 < 7? "0"+newdate.getDay()+1:newdate.getDay()+1+(-7); //明天  3
+            // let weeks2 = newdate.getDay()+2 < 7? "0"+newdate.getDay()+2:newdate.getDay()+2+(-7); //後天  4
+            // let weeks3 = newdate.getDay()+3 < 7? "0"+newdate.getDay()+3:newdate.getDay()+3+(-7); //大厚天  5
+            // let weeks4 = newdate.getDay()+4 < 7? "0"+newdate.getDay()+4:newdate.getDay()+4+(-7);  //大大厚天  6
+            // let weeks5 = newdate.getDay()+5 < 7? "0"+newdate.getDay()+5:newdate.getDay()+5+(-7); //大大大厚天  7
+            // let weeks6 = newdate.getDay()+6 < 7? "0"+newdate.getDay()+6:newdate.getDay()+6+(-7); //大大大大厚天  1
+            
+
+            // let weeks1 = newdate.getDay()+1 < 7? newdate.getDay()+1:newdate.getDay()+1+(-7); //明天  3
+            // let weeks2 = newdate.getDay()+2 < 7? newdate.getDay()+2:newdate.getDay()+2+(-7); //後天  4
+            // let weeks3 = newdate.getDay()+3 < 7? newdate.getDay()+3:newdate.getDay()+3+(-7); //大厚天  5
+            // let weeks4 = newdate.getDay()+4 < 7? newdate.getDay()+4:newdate.getDay()+4+(-7);  //大大厚天  6
+            // let weeks5 = newdate.getDay()+5 < 7? newdate.getDay()+5:newdate.getDay()+5+(-7); //大大大厚天  7
+            // let weeks6 = newdate.getDay()+6 < 7? newdate.getDay()+6:newdate.getDay()+6+(-7); //大大大大厚天  1
+           
+
+            
+            let weeks1 = newdate.getDay()+1 < 7? newdate.getDay()+1:newdate.getDay()+1+(-7); //明天  3
+            let weeks2 = newdate.getDay()+2 < 7? newdate.getDay()+2:newdate.getDay()+2+(-7); //大厚天  5
+            let weeks3 = newdate.getDay()+3 < 7? newdate.getDay()+3:newdate.getDay()+3+(-7); //大厚天  5
+            let weeks4 = newdate.getDay()+4 < 7? newdate.getDay()+4:newdate.getDay()+4+(-7);  //大大厚天  6
+            let weeks5 = newdate.getDay()+5 < 7? newdate.getDay()+5:newdate.getDay()+5+(-7); //大大大厚天  7
+            let weeks6 = newdate.getDay()+6 < 7? newdate.getDay()+6:newdate.getDay()+6+(-7); //大大大大厚天  1
+
+           
+       
 
 
             
@@ -140,13 +166,21 @@ var app= new Vue({
 
 
 
-            this.nowWeek= week[weeks]; //4
+            this.nowWeek= week[weeks]; //日:0
             this.tomorrow=week[weeks1]; //5
             this.tomorrow1=week[weeks2]; //6
             this.tomorrow2=week[weeks3]; //7
             this.tomorrow3=week[weeks4]; //1
             this.tomorrow4=week[weeks5]; //1
             this.tomorrow5=week[weeks6]; //1
+            
+            // this.nowWeek= weeks; //日:0
+            // this.tomorrow=weeks1; //5
+            // this.tomorrow1=weeks2; //6
+            // this.tomorrow2=weeks3; //7
+            // this.tomorrow3=weeks4; //1
+            // this.tomorrow4=weeks5; //1
+            // this.tomorrow5=weeks6; //1
 
 
             
